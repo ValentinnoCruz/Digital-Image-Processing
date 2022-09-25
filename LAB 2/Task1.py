@@ -20,12 +20,10 @@ im_gray.show()
 # Get access to the pixel values through the matrix im_gray_pixels.
 im_gray_pixels = asarray(im_gray)
 
-# Create a new matrix w/ no pixel difference .
-crop_rows = rows - 0
-crop_cols = cols - 0
-im_gray_crop_pixels = np.zeros(shape=(crop_rows, crop_cols))
 
-
+# print out max pixel value 
+biggest = np.amax(im_gray_pixels)
+print("the max pixel value is", biggest)
 
 
 # Determine the dimensions of the image.
