@@ -26,6 +26,12 @@ biggest = np.amax(im_gray_pixels)
 print("the max pixel value is", biggest)
 
 
+a = np.array(im_gray)
+print(np.transpose(a))
+#np.rot90(im_gray, k=2, axes=(0,1) )
+#im_gray.show()
+
+
 # Determine the dimensions of the image.
 rows, cols = im_gray_pixels.shape
 print("Image size is: ", rows, "rows x", cols, "columns")
