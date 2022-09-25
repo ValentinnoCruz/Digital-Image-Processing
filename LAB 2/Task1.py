@@ -49,15 +49,22 @@ rows, cols = im_gray_pixels.shape
 print("Image size of gray : ", rows, "rows x", cols, "columns")
 
 
-# ===================
-#   Rotate 90-deg
-# ===================
+# =======================
+#   Gray Rotate 90-deg
+# =======================
 
 # otate im_gray 1x @yaxis and set it to 'a'
 a = np.rot90(im_gray, 1, (0,1))
 im_gray_rot = asarray(a) # set the array of 'a' to im_gray_rot
 rows, cols = im_gray_rot.shape
 print("Image size of rotated gray : ", rows, "rows x", cols, "columns")
+
+
+
+
+# ===============================
+#   display and save gray_rot
+# ===============================
 
 # set pixels of gray_rot as an array
 im_gray_rot_pixels = asarray(im_gray_rot)
@@ -72,6 +79,74 @@ im_gray_rot.show()
 im_gray_rot.save("Beginnings_grayscale_Rotated.jpg")
 
 
+
+
+#---------------------------------------------------
+#---------------------------------------------------
+#---------------------------------------------------
+#---------------------------------------------------
+#---------------------------------------------------
+
+
+
+# ===================
+#   access pixel val
+# ===================
+# Get access to the pixel values through the matrix im_gray_pixels.
+im_pixels = asarray(im)
+
+
+# ===================
+#   Max Pixel Value
+# ===================
+rows, cols = im_pixels.shape
+for row in range(rows):
+    for col in range(cols):
+        # get the current pixel value
+        current_pixel_value2 = im_pixels[row, col]
+        # Manipulating your pixel values
+        # for example: print pixel values that are greater than 200
+        if current_pixel_value2 >= 240:
+            print("Max Pixel Value is: ", current_pixel_value2)
+
+
+# ===================
+#  img dimensions
+# ===================
+
+# Determine the dimensions of the image.
+rows2, cols2 = im_pixels.shape
+print("Image size of gray : ", rows2, "rows x", cols2, "columns")
+
+
+# =======================
+#   Gray Rotate 90-deg
+# =======================
+
+# otate im_gray 1x @yaxis and set it to 'a'
+b = np.rot90(im, 1, (0,1))
+im_rot = asarray(b) # set the array of 'a' to im_gray_rot
+rows, cols = im_rot.shape
+print("Image size of rotated gray : ", rows, "rows x", cols, "columns")
+
+
+
+
+# ===============================
+#   display and save gray_rot
+# ===============================
+
+# set pixels of gray_rot as an array
+im_rot_pixels = asarray(im_rot)
+
+# Create an image from im_gray_rot_pixels.
+im_rot = Image.fromarray(np.uint8(im_rot_pixels))
+
+# Display the image.
+im_rot.show()
+
+# Save the image.
+im_rot.save("Beginnings_Rotated.jpg")
 
 
 
