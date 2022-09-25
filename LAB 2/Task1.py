@@ -23,7 +23,6 @@ im_gray.show()
 # Get access to the pixel values through the matrix im_gray_pixels.
 im_gray_pixels = asarray(im_gray)
 
-
 # ===================
 #   Max Pixel Value
 # ===================
@@ -88,12 +87,22 @@ im_gray_rot.save("Beginnings_grayscale_Rotated.jpg")
 #---------------------------------------------------
 
 
-
 # ===================
 #   access pixel val
 # ===================
 # Get access to the pixel values through the matrix im_gray_pixels.
 im_pixels = asarray(im)
+print("herer is", im_pixels)
+
+
+# ===================
+#  img dimensions
+# ===================
+
+# Determine the dimensions of the image.
+rows, cols = im_pixels.shape
+print("Image size of gray : ", rows, "rows x", cols, "columns")
+
 
 
 # ===================
@@ -110,13 +119,6 @@ for row in range(rows):
             print("Max Pixel Value is: ", current_pixel_value2)
 
 
-# ===================
-#  img dimensions
-# ===================
-
-# Determine the dimensions of the image.
-rows2, cols2 = im_pixels.shape
-print("Image size of gray : ", rows2, "rows x", cols2, "columns")
 
 
 # =======================
@@ -124,7 +126,7 @@ print("Image size of gray : ", rows2, "rows x", cols2, "columns")
 # =======================
 
 # otate im_gray 1x @yaxis and set it to 'a'
-b = np.rot90(im, 1, (0,1))
+b = np.rot90(im, 1, (1,0))
 im_rot = asarray(b) # set the array of 'a' to im_gray_rot
 rows, cols = im_rot.shape
 print("Image size of rotated gray : ", rows, "rows x", cols, "columns")
@@ -147,40 +149,3 @@ im_rot.show()
 
 # Save the image.
 im_rot.save("Beginnings_Rotated.jpg")
-
-
-
-# for col in range (im_gray.width())
-#     for row in range (im_gray.height())
-#         pixel = im_gray.get(col, row)
-
-
-
-
-# b =[]
-# for x in range(0, get):
-#     for y in range(cols):
-#         # get the current pixel value
-#         pixel_val = im_gray_pixels[row, col]
-# print("the new one is t", pixel_val)
-
-
-
-
-
-
-
-# ---------------- alternates --------------------------
-# # print out max pixel value 
-# biggest = np.amax(im_gray_pixels)
-# print("the max pixel value is", biggest)
-
-
-# a = np.array(im_gray)
-# print(np.transpose(a))
-#np.rot90(im_gray, k=2, axes=(0,1) )
-#im_gray.show()
-
-
-# rotate_image1 = im.rotate(90)
-# rotate_image1.show()
