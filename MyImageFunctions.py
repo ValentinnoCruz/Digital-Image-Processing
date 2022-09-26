@@ -1,33 +1,24 @@
+# MyImageFunctions.py
 # Import pillow
+
 from PIL import Image, ImageOps
 
 # Import numpy
 import numpy as np
 from numpy import asarray
+def myImageInverse( inImage_pixels ):
 
 
 
+# This function takes as input a numpy matrix representing a grayscale image and
+# outputs another numpy matrix which is the image inverse of the input.
+# That is, for each pixel, output_value = 255 - input_value
 
-def simple(a):
-    return =[]
-    for i in range(len(a))
-    if a[i] not in result:
-        result.append(a[i])
+Syntax:
+out_numpy_matrix = myImageInverse( in_numpy_matrix )
 
+Input:
+in_numpy_matrix = the grayscale values of the input image
 
-def myImageInverse(inImage):
-
-    if len(inImage) > 0:
-
-
-
-
-    # Read the image from file.
-    im = Image.open('Watertower.tif')
-
-    # Get access to the pixel values through the matrix im_gray_pixels.
-    im_pixels = asarray(im_gray)
-
-    # Determine the dimensions of the image.
-    rows, cols = im_gray_pixels.shape
-    print("Image size is: ", rows, "rows x", cols, "columns")
+Output:
+out_numpy_matrix = the grayscale of the inverse image
