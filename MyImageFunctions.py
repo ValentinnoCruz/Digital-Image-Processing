@@ -33,4 +33,9 @@ def myImageInverse( inImage_pixels ):
         for j in range(y):
             outImage[i][j] = 255 - inImage_pixels[i][j]
     # returning the output image
+<<<<<<< HEAD
     return outImage;
+=======
+    return outImage;
+            
+>>>>>>> b6fcd64086e65d1eecc2d6800bea19d2b78b5e10
