@@ -1,12 +1,6 @@
-
-
-
-# rows, cols = im_gray_pixels.shape
-# im_gray_rot = np.zeros([rows, cols], dtype = np.uint8)
-
-# for i in range (rows):
-#     for j in range (cols):
-#         im_gray_rot[i,j] = im_gray_rot[j-1, i-1]
-
-# print("here we goooooo", im_gray_rot[i,j])
-# # ===============================
+     # get the current pixel value
+            current_pixel_value2 = im_rot_pixels[row, col,zed]
+            # Manipulating your pixel values
+            # for example: print pixel values that are greater than 200
+            if current_pixel_value2 > 240:
+                print("Max Pixel Value is: ", current_pixel_value2)

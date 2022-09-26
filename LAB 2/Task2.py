@@ -28,3 +28,22 @@ im_inv.show()
 
 # Save the inverse image to a file.
 im_inv.save("Watertower_inv.tif")
+
+
+
+# --------------------------------
+#        max pixel value
+# --------------------------------
+
+im_inv_pixels = asarray(im_inv)
+
+
+rows, cols = im_inv_pixels.shape
+for row in range(rows):
+    for col in range(cols):
+        # get the current pixel value
+        current_pixel_value = im_inv_pixels[row, col]
+        # Manipulating your pixel values
+        # for example: print pixel values that are greater than 200
+        if current_pixel_value >= 255:
+            print("Max Pixel Value is: ", current_pixel_value)
