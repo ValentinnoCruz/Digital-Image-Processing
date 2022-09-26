@@ -18,7 +18,7 @@ im_pixels = asarray(im)
 
 # Import myImageInverse from myImageInverse
 from MyImageFunctions import myImageInverse
-im_inv_pixels = myImageInverse(outImage)
+im_inv_pixels = myImageInverse(im_pixels)
 
 # Create an image from im_inv_pixels.
 im_inv = Image.fromarray(np.uint8(im_inv_pixels))
