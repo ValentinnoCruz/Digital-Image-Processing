@@ -87,55 +87,26 @@ im_gray_rot.save("Beginnings_grayscale_Rotated.jpg")
 #---------------------------------------------------
 
 
-# ===================
+
+
+# =========================
 #   access pixel val
-# ===================
+# =========================
 # Get access to the pixel values through the matrix im_gray_pixels.
 im_pixels = asarray(im)
-print("herer is", im_pixels)
 
 
-# ===================
-#  img dimensions
-# ===================
-
-# Determine the dimensions of the image.
-rows, cols = im_pixels.shape
-print("Image size of gray : ", rows, "rows x", cols, "columns")
-
-
-
-# ===================
-#   Max Pixel Value
-# ===================
-rows, cols = im_pixels.shape
-for row in range(rows):
-    for col in range(cols):
-        # get the current pixel value
-        current_pixel_value2 = im_pixels[row, col]
-        # Manipulating your pixel values
-        # for example: print pixel values that are greater than 200
-        if current_pixel_value2 >= 240:
-            print("Max Pixel Value is: ", current_pixel_value2)
-
-
-
-
-# =======================
-#   Gray Rotate 90-deg
-# =======================
+# =========================
+#    Rotate 90-deg
+# =========================
 
 # otate im_gray 1x @yaxis and set it to 'a'
-b = np.rot90(im, 1, (1,0))
+b = np.rot90(im_pixels, 1, (1,0))
 im_rot = asarray(b) # set the array of 'a' to im_gray_rot
-rows, cols = im_rot.shape
-print("Image size of rotated gray : ", rows, "rows x", cols, "columns")
-
-
 
 
 # ===============================
-#   display and save gray_rot
+#   display and save rotation
 # ===============================
 
 # set pixels of gray_rot as an array
@@ -149,3 +120,33 @@ im_rot.show()
 
 # Save the image.
 im_rot.save("Beginnings_Rotated.jpg")
+
+# ===================
+#   Max Pixel Value
+# ===================
+rows, cols, zeds = im_pixels.shape
+for row in range(rows):
+    for col in range(cols):
+        for zed in range(zeds):
+            # get the current pixel value
+            current_pixel_value2 = im_pixels[row, col, zed]
+            # Manipulating your pixel values
+            # for example: print pixel values that are greater than 200
+            if current_pixel_value2 == 255:
+                print("Max Pixel Value is: ", current_pixel_value2)
+
+
+
+
+
+
+
+# rows, cols = im_gray_pixels.shape
+# im_gray_rot = np.zeros([rows, cols], dtype = np.uint8)
+
+# for i in range (rows):
+#     for j in range (cols):
+#         im_gray_rot[i,j] = im_gray_rot[j-1, i-1]
+
+# print("here we goooooo", im_gray_rot[i,j])
+# # ===============================
