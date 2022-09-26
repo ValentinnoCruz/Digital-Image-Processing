@@ -61,6 +61,30 @@ print("Image size of rotated gray : ", rows, "rows x", cols, "columns")
 
 
 
+# ===================
+#   access pixel val
+# ===================
+# Get access to the pixel values through the matrix im_gray_pixels.
+im_gray_rot_pixels = asarray(im_gray)
+
+# ===================
+#   Max Pixel Value
+# ===================
+rows, cols = im_gray_rot_pixels.shape
+for row in range(rows):
+    for col in range(cols):
+        # get the current pixel value
+        current_pixel_value = im_gray_rot_pixels[row, col]
+        # Manipulating your pixel values
+        # for example: print pixel values that are greater than 200
+        if current_pixel_value >= 240:
+            print("Max Pixel Value gray rotate is: ", current_pixel_value)
+
+
+
+
+
+
 # ===============================
 #   display and save gray_rot
 # ===============================
