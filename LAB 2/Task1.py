@@ -75,11 +75,12 @@ im_gray_rot.save("Beginnings_grayscale_Rotated.jpg")
 #============================================
 #           second rotation
 #============================================
+im_rot = ImageOps.grayscale(im)
 
 
 
 # Get access to the pixel values through the matrix im_gray_pixels.
-im_pixels = asarray(im)
+im_pixels = asarray(im_rot)
 
 
 # --------------------------------
