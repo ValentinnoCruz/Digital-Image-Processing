@@ -13,21 +13,21 @@ cols = 256
 im_pixels = np.zeros(shape=(rows, cols))
 
 
+# 256 values between 255 - 0 (back - white)
+x = np.linspace(255, 0, 256)
 
-im_pixels = np.zeros(shape=(rows, cols), dtype=int)
-for i in range(0, rows):
-    for j in range(0, cols):
-        im_pixels[i][j] = im_gray_rot[i][j]
+#repeat the vector 100 times
+image2_grad = np.tile(x, (100, 1)).T
+
+#flip image 90degrees
+a = np.rot90(image2_grad, 1, (1,0))
+image_pix = asarray(a) # set as an array
+
+#Generate image from array.
+newImage = Image.fromarray(np.uint8(image_pix))
 
 
+newImage.show()
+newImage.save('image.tif')
 
-
-
-# img = Image.new('RGB', im_pixels,)
-
-# x = np.linspace(0, 1, 100)
-# image = np.tile(x, (100, 1)).T
-
-# img.save('image.png')
-# img.show()
 
