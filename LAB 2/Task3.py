@@ -29,32 +29,24 @@ newImage = Image.fromarray(np.uint8(image_pix))
 
 
 
-
 #--------------------------
 # get average pixel value
 #--------------------------
-x = np.size(image_pix, 0)
-y = np.size(image_pix, 1)
+#set the mean to 0
+mean = 0
+
+# loop through the rows and columns 
+# to find the avg
+for row in range(100):
+    for col in range(256):
+        mean += image_pix[row, col]
+mean = mean / (100 * 256)
+print(mean)
 
 
-
-total =0
-for i in range(x):
-    for j in range(y):
-        total+=image_pix[(i,j)]
-    b=x*y
-mean=(total)/b
-print("Mean Value is: ",np.mean(mean))
-
+#--------------------------
+#   save image to folder
+#--------------------------
 newImage.show()
 newImage.save('image.tif')
-
-
-# total =0
-# for i in range(0, cols):
-#     for j in range(0, rows):
-#         total+= image_pix.getpixel((i,j))[0]
-
-# mean = total/(rows * cols)
-# print(mean)
 

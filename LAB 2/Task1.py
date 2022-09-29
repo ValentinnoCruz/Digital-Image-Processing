@@ -87,7 +87,7 @@ im_pixels = asarray(im_rot)
 #     rotate matrix 90 deg cw
 # --------------------------------
 
-# otate im_gray 1x @yaxis and set it to 'a'
+# rotate im_pixels  1x @yaxis and set it to 'b'
 b = np.rot90(im_pixels, 1, (1,0))
 im_rot = asarray(b) # set the array of 'a' to im_gray_rot
 
@@ -116,7 +116,7 @@ for row in range(rows):
     for col in range(cols):
         for zed in range(zeds):
             # get the current pixel value
-            current_pixel_value2 = im_rot_pixels[row, col,zed]
+            current_pixel_value2 = im_rot_pixels[row, col, zed]
             # Manipulating your pixel values
             # for example: print pixel values that are greater than 200
             if current_pixel_value2 >= 255:

@@ -1,6 +1,9 @@
-     # get the current pixel value
-            current_pixel_value2 = im_rot_pixels[row, col,zed]
-            # Manipulating your pixel values
-            # for example: print pixel values that are greater than 200
-            if current_pixel_value2 > 240:
-                print("Max Pixel Value is: ", current_pixel_value2)
+
+
+# total =0
+# for i in range(x):
+#     for j in range(y):
+#         total+=image_pix[(i,j)]
+#     b=x*y
+# mean=(total)/b
+# print("Mean Value is: ",np.mean(mean))
