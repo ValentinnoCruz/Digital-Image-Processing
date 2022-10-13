@@ -1,0 +1,1 @@
+'LAB 3\Lab_03_image.tif'

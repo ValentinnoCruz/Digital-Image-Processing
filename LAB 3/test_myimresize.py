@@ -16,6 +16,8 @@ orig_im.show()
 # FLOATING POINT OPERATIONS IN THIS LAB.
 orig_im_pixels = asarray(orig_im, dtype=np.float32)
 
+
+
 # Import myImageResize from MyImageFunctions
 from MyImageFunctions import myImageResize
 
