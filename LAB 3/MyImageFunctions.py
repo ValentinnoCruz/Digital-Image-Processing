@@ -24,26 +24,26 @@ def myImageResize( inImage_pixels, M, N, interpolation_method ):
     # xNew and yNew are new width and
     # height of image required
     #after scaling
-    xNew = int(w * 1 / 2);
-    yNew = int(h * 1 / 2);
+    M = int(w * 1 / 2);
+    N = int(h * 1 / 2);
 
     # calculating the scaling factor
     # work for more than 2 pixel
-    xScale = xNew/(w-1);
-    yScale = yNew/(h-1);
+    xScale = M/(w-1);
+    yScale = N/(h-1);
 
     # using numpy taking a matrix of xNew
     # width and yNew height with
     # 4 attribute [alpha, B, G, B] values
-    newImage = np.zeros([xNew, yNew, 4]);
+    interpolation_method = np.zeros([M, N, 4]);
 
-    for i in range(xNew-1):
-        for j in range(yNew-1):
-            newImage[i + 1, j + 1]= m[1 + int(i / xScale),
+    for i in range(M-1):
+        for j in range(N-1):
+            interpolation_method[i + 1, j + 1]= m[1 + int(i / xScale),
                                     1 + int(j / yScale)]
-
+    return interpolation_method
     # Save the image after scaling
-    img.imsave('scaled.png', newImage);
+    #img.imsave('scaled.png', newImage);
 
 #def myRMSE( first_im_pixels, second_im_pixels ):
 #< your implementation>
