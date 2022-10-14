@@ -61,27 +61,79 @@ def myImageResize( inImage_pixels, M, N, interpolation_method ):
 #-----------------------------------------------------------------
 #-----------------------------------------------------------------
 
-def mybilinear(x1,y1,p1,x2,y2,p2,x3,y3,p3,x4,y4,p4,x5,y5):
-#< your implementation>
+def mybilinear(array_in, width_in, height_in, array_out, width_out, height_out):
+    for i in range(height_out):
+        for j in range(width_out):
+            # Relative coordinates of the pixel in output space
+            x_out = j / width_out
+            y_out = i / height_out
 
-@function
-def mybilinear(pixelLocs=None,pixelVals=None,interpoLoc=None,*args,**kwargs):
-    varargin = mybilinear.varargin
-    nargin = mybilinear.nargin
+            # Corresponding absolute coordinates of the pixel in input space
+            x_in = (x_out * width_in)
+            y_in = (y_out * height_in)
 
-    #UNTITLED2 Summary of this function goes here
-#   Detailed explanation goes here
+            # Nearest neighbours coordinates in input space
+            x_prev = int(np.floor(x_in))
+            x_next = x_prev + 1
+            y_prev = int(np.floor(y_in))
+            y_next = y_prev + 1
+
+            # Sanitize bounds - no need to check for < 0
+            x_prev = min(x_prev, width_in - 1)
+            x_next = min(x_next, width_in - 1)
+            y_prev = min(y_prev, height_in - 1)
+            y_next = min(y_next, height_in - 1)
+            
+            # Distances between neighbour nodes in input space
+            Dy_next = y_next - y_in;
+            Dy_prev = 1. - Dy_next; # because next - prev = 1
+            Dx_next = x_next - x_in;
+            Dx_prev = 1. - Dx_next; # because next - prev = 1
+            
+            # Interpolate over 3 RGB layers
+            for c in range(3):
+                array_out[i][j][c] = Dy_prev * (array_in[y_next][x_prev][c] * Dx_next + array_in[y_next][x_next][c] * Dx_prev) \
+                + Dy_next * (array_in[y_prev][x_prev][c] * Dx_next + array_in[y_prev][x_next][c] * Dx_prev)
+                
+    return array_out
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#     def mybilinear(x1,y1,p1,x2,y2,p2,x3,y3,p3,x4,y4,p4,x5,y5):
+# #< your implementation>
+
+# #@function
+# #def mybilinear(pixelLocs=None,pixelVals=None,interpoLoc=None,*args,**kwargs):
+#     varargin = mybilinear.varargin
+#     nargin = mybilinear.nargin
+
+#     #UNTITLED2 Summary of this function goes here
+# #   Detailed explanation goes here
     
-    P51=(dot((p3 - p1),((interpoLoc(1) - pixelLocs(1)) / (pixelLocs(5) - pixelLocs(1))))) + p1
-# mybilinear.m:5
-    P52=(dot((p3 - p1),((interpoLoc(1) - pixelLocs(3)) / (pixelLocs(7) - pixelLocs(3))))) + p2
-# mybilinear.m:7
-    P5=(dot((P52 - P51),((interpoLoc(2) - pixelLocs(2)) / (pixelLocs(4) - pixelLocs(2))))) + P51
-# mybilinear.m:9
-    bilinearValue=copy(P5)
-# mybilinear.m:11
-    return bilinearValue
+#     P51=(np.dot((p3 - p1),((interpoLoc(1) - pixelLocs(1)) / (pixelLocs(5) - pixelLocs(1))))) + p1
+# # mybilinear.m:5
+#     P52=(np.dot((p3 - p1),((interpoLoc(1) - pixelLocs(3)) / (pixelLocs(7) - pixelLocs(3))))) + p2
+# # mybilinear.m:7
+#     P5=(np.dot((P52 - P51),((interpoLoc(2) - pixelLocs(2)) / (pixelLocs(4) - pixelLocs(2))))) + P51
+# # mybilinear.m:9
+#     bilinearValue=copy(P5)
+# # mybilinear.m:11
+#     return bilinearValue
     
-if __name__ == '__main__':
-    pass
+# if __name__ == '__main__':
+#     pass
     
