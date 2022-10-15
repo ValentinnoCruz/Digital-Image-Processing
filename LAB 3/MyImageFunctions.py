@@ -16,32 +16,54 @@ import matplotlib.image as img
 
 def myImageResize( inImage_pixels, M, N, interpolation_method ):
     #< your implementation>
-    m = img.imread('LAB 3\Lab_03_image.tif');
+    assert interpolation_method == 'nearest' or interpolation_method == 'bilinear'
+    ImageOut = np.zeros((M,N))
 
     # determining the length of original image
-    w, h = m.shape[:2];
+    w,h = inImage_pixels.shape
 
-    # M and N are new width and
-    # height of image required
-    #after scaling
-    M = int(w * 1 / 2);
-    N = int(h * 1 / 2);
+    # determining the length of original image
+    #w, h = ImageOut.shape[:2];
 
-    # calculating the scaling factor
-    # work for more than 2 pixel
-    xScale = M/(w-1);
-    yScale = N/(h-1);
+    # M and N are new width and height of image required after scaling
+    wRatio = w/N
+    hRation = h/M
 
+    if interpolation_method == 'nearest':
+        for i in range(M):
+            for j in range(N):
+                y, x = int(j * wRatio), int(i * hRation)
+                ImageOut[i][j] = inImage_pixels[x][y]
+
+    else: #interpolation_method == 'bilinear'
+        for i in range(M):
+            for j in range(N):
+                y, x = j * w, i * h
+                x_floor, y_floor = int(x), int(y)
+                x_ceil, y_ceil = min(hRation - 1, int(math.ceil(x))), min(wRatio - 1, int(math.ceil(y)))
+
+                p1 = inImage_pixels[x_floor, y_floor]
+                p2 = inImage_pixels[x_floor, y_ceil]
+                p3 = inImage_pixels[x_ceil, y_floor]
+                p4 = inImage_pixels[x_ceil, y_ceil]
+
+                ImageOut[i, j] = mybilinear(x_floor, y_floor, p1, 
+                                            x_floor, y_ceil, p2, 
+                                            x_ceil, y_floor, p3, 
+                                            x_ceil, y_ceil, p4, 
+                                            x, y)
+
+    return ImageOut
     # using numpy taking a matrix of M
     # width and N height with
     # 4 attribute [alpha, B, G, B] values
-    interpolation_method = np.zeros([M, N, 4]);
+    # interpolation_method = np.zeros([M, N, 4]);
 
-    for i in range(M-1):
-        for j in range(N-1):
-            interpolation_method[i + 1, j + 1]= m[1 + int(i / xScale),
-                                    1 + int(j / yScale)]
-    return interpolation_method
+    # for i in range(M-1):
+    #     for j in range(N-1):
+    #         interpolation_method[i + 1, j + 1]= m[1 + int(i / xScale),
+    #                                 1 + int(j / yScale)]
+    # return interpolation_method
 
     # Save the image after scaling
     #img.imsave('scaled.png', newImage);
@@ -50,13 +72,53 @@ def myImageResize( inImage_pixels, M, N, interpolation_method ):
 #-----------------------------------------------------------------
 #-----------------------------------------------------------------
 
-#def myRMSE( first_im_pixels, second_im_pixels ):
-#< your implementation>
+#function rmse()
+# def myRMSE(first_im_pixels, second_im_pixels):
+#     answer = 1 / len(first_im_pixels)
+
+#   #find the sum from i = 0 to n of (xi - ni) * (xi - ni)
+#     sum = 0
+#     for i in range(len(first_im_pixels)):
+#         sum += (first_im_pixels[i] - second_im_pixels[i]) * (first_im_pixels[i] - second_im_pixels[i])
+#         answer *= sum
+
+# #return sqrt of answer
+#     return math.sqrt(answer)
+
+#first_im_pixels = [1, 3, 5]
+#second_im_pixels = [2, 1, 4]
+#-----------------------------------------------------------------
+def myRMSE(first_im_pixels, second_im_pixels):
+    sse = ((first_im_pixels - second_im_pixels) ** 2).sum()
+    return np.sqrt(sse / (first_im_pixels.shape[0] * first_im_pixels.shape[1]))
 
 
+# def myRMSE(first_im_pixels, second_im_pixels):
+#     r,c=first_im_pixels.shape
+# # myRMSE.m:2
+    
+#     pixelDiff=0
+# # myRMSE.m:4
+#     for x in np.arange(1,r).reshape(-1):
+#         for y in np.arange(1,c).reshape(-1):
+#             pixel_diff=pixelDiff + (((first_im_pixels(x,y)) - (second_im_pixels(x,y))) ** 2).sum()
+# # myRMSE.m:8
+#     return np.sqrt(pixel_diff / (np.dot(r,c)))
+# # myRMSE.m:12
+#     #return RMSE
+#-----------------------------------------------------------------
 
+# def myRMSE(first_im_pixels, second_im_pixels):
+#     #< your implementation>
+#     Val = np.sum(np.sqrt(first_im_pixels - second_im_pixels)) / first_im_pixels.shape[0] * first_im_pixels.shape[1]
 
-
+#     return Val
+#-----------------------------------------------------------------
+    
+    # diffs = 0
+    # for p, a in zip(first_im_pixels, second_im_pixels):
+    #     diffs += (p - a)**2
+    # return diffs / len(first_im_pixels)
 #-----------------------------------------------------------------
 #-----------------------------------------------------------------
 #-----------------------------------------------------------------
