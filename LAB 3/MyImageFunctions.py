@@ -14,10 +14,10 @@ def myImageResize(inImage_pixels, M, N, interpolation_method):
     ImageOut = np.zeros((M, N))
 
     # determining the length of original image
-    h, w = inImage_pixels.shape
-    # M and N are new width and height of image required after scaling
-    wRat = w / N
-    hrat = h / M
+    r, c = inImage_pixels.shape[:2]
+    # M and N are new row and col of image required after scaling
+    cRat = c / N
+    rRat = r / M
 
 # -------------------------------------------
 #      Nearest neighbor interpolation
@@ -25,17 +25,19 @@ def myImageResize(inImage_pixels, M, N, interpolation_method):
     if interpolation_method == 'nearest': 
         for i in range(M):
             for j in range(N):
-                y, x = int(j * wRat), int(i * hrat)
+                y, x = int(j * cRat), int(i *  rRat)
                 ImageOut[i][j] = inImage_pixels[x][y]
+
 # -------------------------------------------
 #          Bilinear interpolation
 # -------------------------------------------
+
     if interpolation_method == 'bilinear':
         for i in range(M):
             for j in range(N):
-                y, x = j * wRat, i * hrat
+                y, x = j * cRat, i * rRat
                 x_floor, y_floor = int(x), int(y)
-                x_ceil, y_ceil = min(h - 1, int(math.ceil(x))), min(w - 1, int(math.ceil(y)))
+                x_ceil, y_ceil = min(r - 1, int(math.ceil(x))), min(c - 1, int(math.ceil(y)))
 
                 # Set our pixel location values
                 p1 = inImage_pixels[x_floor, y_floor]
@@ -91,8 +93,8 @@ def mybilinear(x1,y1,p1,x2,y2,p2,x3,y3,p3,x4,y4,p4,x5,y5):
 
     Min_x = min(np.floor(x1),np.floor(x2),np.floor(x3),np.floor(x4))
     Max_x = max(np.ceil(x1),np.floor(x2),np.floor(x3),np.floor(x4))
-    Min_y = min((np.floor(y1),np.floor(y2),np.floor(y3),np.floor(y4)))
-    Max_y = max((np.ceil(y1),np.floor(y2),np.floor(y3),np.floor(y4)))
+    Min_y = min(np.floor(y1),np.floor(y2),np.floor(y3),np.floor(y4))
+    Max_y = max(np.ceil(y1),np.floor(y2),np.floor(y3),np.floor(y4))
 
     # if min x & max x are equal
     if (Min_x == Max_x):
