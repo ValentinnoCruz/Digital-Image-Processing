@@ -31,7 +31,6 @@ def myImageResize(inImage_pixels, M, N, interpolation_method):
 # -------------------------------------------
 #          Bilinear interpolation
 # -------------------------------------------
-
     elif interpolation_method == 'bilinear':
         for i in range(M):
             for j in range(N):
@@ -56,11 +55,9 @@ def myImageResize(inImage_pixels, M, N, interpolation_method):
 #..........................................................
 #                Root Mean Squared Error 
 #..........................................................
-
 #  Here we are taking a comparision between two sets of values
 #  This is done by looping through the pixels and comparing
 #  the actual difference between the estimated and measured vals
-
 
 def myRMSE(first_im_pixels, second_im_pixels):
     # Take the dimensions from the first pixels. 
@@ -73,7 +70,6 @@ def myRMSE(first_im_pixels, second_im_pixels):
 			rmse += (first_im_pixels[m,n] - second_im_pixels[m,n])**2
 	
 	rmse = np.sqrt(rmse/(M*N))
-	
 	return rmse
 
 #..........................................................
