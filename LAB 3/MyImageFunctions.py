@@ -4,7 +4,9 @@ import math
 #..........................................................
 #                Root Mean Squared Error 
 #..........................................................
-
+# This function is used for resizing images
+# both nearest neighbor and bilinear methods are used
+# depending on which is called. 
 
 def myImageResize(inImage_pixels, M, N, interpolation_method):
 
@@ -32,7 +34,7 @@ def myImageResize(inImage_pixels, M, N, interpolation_method):
 #          Bilinear interpolation
 # -------------------------------------------
 
-    if interpolation_method == 'bilinear':
+    elif interpolation_method == 'bilinear':
         for i in range(M):
             for j in range(N):
                 y, x = j * cRat, i * rRat
@@ -45,12 +47,12 @@ def myImageResize(inImage_pixels, M, N, interpolation_method):
                 p3 = inImage_pixels[x_ceil, y_floor]
                 p4 = inImage_pixels[x_ceil, y_ceil]
 
+                # the output image is set to the new values
                 ImageOut[i, j] = mybilinear(x_floor, y_floor, p1, 
                                             x_floor, y_ceil, p2, 
                                             x_ceil, y_floor, p3, 
                                             x_ceil, y_ceil, p4, 
                                             x, y)
-
     return ImageOut
 
 #..........................................................
@@ -63,11 +65,9 @@ def myImageResize(inImage_pixels, M, N, interpolation_method):
 
 
 def myRMSE(first_im_pixels, second_im_pixels):
-#< your implementation>
     # Take the dimensions from the first pixels. 
 	M, N = np.shape(first_im_pixels)
 
-	
 	# Find the RMSE by looping through pixels and comparing.
 	rmse = 0
 	for m in range(M):
@@ -78,19 +78,16 @@ def myRMSE(first_im_pixels, second_im_pixels):
 	
 	return rmse
 
-#----------------------------------------------------------
-#----------------------------------------------------------
-#----------------------------------------------------------
+#..........................................................
+#                Bilinear Method 
+#..........................................................
+# With this function we will compute the values of
+# the pixels in the interpolated position using
+# the other pixel values
 
 def mybilinear(x1,y1,p1,x2,y2,p2,x3,y3,p3,x4,y4,p4,x5,y5):
-# #< your implementation>
 
-    # Get Min_x, Max_x, Min_y, Max_y of x and y coordinates of 4 pixels.
-    # Min_x = min(x1, x2, x3, x4)
-    # Max_x = max(x1, x2, x3, x4)
-    # Min_y = min(y1, y2, y3, y4)
-    # Max_y = max(y1, y2, y3, y4)
-
+    # Set up the min and max of x and y
     Min_x = min(np.floor(x1),np.floor(x2),np.floor(x3),np.floor(x4))
     Max_x = max(np.ceil(x1),np.floor(x2),np.floor(x3),np.floor(x4))
     Min_y = min(np.floor(y1),np.floor(y2),np.floor(y3),np.floor(y4))
