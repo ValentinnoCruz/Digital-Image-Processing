@@ -1,3 +1,4 @@
+
 import numpy as np
 import math
 
@@ -9,9 +10,6 @@ import math
 # depending on which is called. 
 
 def myImageResize(inImage_pixels, M, N, interpolation_method):
-
-    #assert interpolation_method == 'nearest' or interpolation_method == 'bilinear'
-
     # set up empty array.
     ImageOut = np.zeros((M, N))
 
