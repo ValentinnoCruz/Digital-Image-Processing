@@ -28,39 +28,32 @@ def histogram_transform(histogram):
     return transformation
     
 
+# --------------------------------------------
+#            Computer Histogram
+# --------------------------------------------
+
+def compute_histogram(image_pixels): 
+    # using ravel we represent our img as a 1-dimensional vector
+    vectorized_image = image_pixels.ravel() 
+    histogram = np.zeros(shape=(256)) 
+    histogram = np.histogram(vectorized_image, 
+                            bins=256, 
+                            range=(0,255)) 
+    # to obtain te normalized histogram we take each value
+    # and then divide it by the total # of pixels
+    normalized_histogram = histogram[0]/vectorized_image.shape[0] 
+    return normalized_histogram
+
+# usually we should make sure that we are creating the correct
+# probablilty distribution. we can do this by checking that the values of
+# the histogram vector adds up to a total of '1'
 
 
-#def compute_histogram( image_pixels ):
-def compute_histogram(image_pixels):
-
-    #Compute Histogram
-#   Takes in grayscale image and outputs a vector histogram of size 256
-    
-    m,n=np.shape(image_pixels)
-
-    
-    prob=np.zeros(shape=(1,256))
-# compute_histogram.m:10
-    
-    for i in np.arange(1,m).reshape(-1):
-        for j in np.arange(1,n).reshape(-1):
-            prob[image_pixels[i,j] + 1] = prob(image_pixels(i, j) + 1) +1
-# compute_histogram.m:15
-    
-    
-    for f in np.arange(1,256).reshape(-1):
-        prob[f]=((prob(f)) / (np.dot(m,n)))
-# compute_histogram.m:20
-    
-    histogram=np.copy(prob)
-# compute_histogram.m:23
-    return histogram
-
-
-
+# --------------------------------------------
+#                 Equalize
+# --------------------------------------------
 def equalize( in_image_pixels ):
 
-#def equalize(image=None,*args,**kwargs):
 
     #Equalize 
 #   Takes in as input a grayscale image 256 bits and returns the histogram
@@ -69,9 +62,9 @@ def equalize( in_image_pixels ):
     #gets index sizes
     mn=np.size(in_image_pixels)
 # equalize.m:7
-    m=mn(1)
+    m=mn*1
 # equalize.m:8
-    n=mn(2)
+    n=mn*2
 # equalize.m:9
     #create a matrix for final processed image
     finalImage=np.zeros(m,n)
