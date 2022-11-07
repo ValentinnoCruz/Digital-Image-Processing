@@ -5,11 +5,11 @@ import numpy as np
 from PIL import Image, ImageOps
 import matplotlib.pyplot as plt
 
-
-
 # --------------------------------------------
 #            Computer Histogram
 # --------------------------------------------
+# Takes in grayscale image and outputs a vector histogram of size 256
+# by traversing through all the pixels in each axis
 
 def compute_histogram(image_pixels): 
     hist = np.zeros(shape=(256))              
