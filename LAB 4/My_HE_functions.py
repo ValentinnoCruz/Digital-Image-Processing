@@ -5,28 +5,7 @@ import numpy as np
 from PIL import Image, ImageOps
 import matplotlib.pyplot as plt
 
-def histogram_transform(histogram):
-    #Histogram Transform
-#   Takes in a histogram as input and returns a transformation vector 256
-#   bit
-    
-    #create empty space to store values
-    transformation=np.zeros(1,256)
-# histogram_transform.m:7
-    
-    for i in np.arange(1,256).reshape(-1):
-        for j in np.arange(1,i).reshape(-1):
-            transformation[i]=transformation(i) + histogram(j)
-# histogram_transform.m:12
-    
-    
-    #Multiply by total number of values
-    for k in np.arange(1,256).reshape(-1):
-        transformation[k]=round(np.dot(transformation(k),(255)))
-# histogram_transform.m:18
-    
-    return transformation
-    
+
 
 # --------------------------------------------
 #            Computer Histogram
