@@ -18,21 +18,6 @@ def compute_histogram(image_pixels):
             hist[int(image_pixels[x][y])] += 1
             
     return hist
-#     # using ravel we represent our img as a 1-dimensional vector
-#     vectorized_image = image_pixels.ravel() 
-#     histogram = np.zeros(shape=(256)) 
-#     histogram = np.histogram(vectorized_image, 
-#                             bins=256, 
-#                             range=(0,255)) 
-#     # to obtain te normalized histogram we take each value
-#     # and then divide it by the total # of pixels
-#     normalized_histogram = histogram[0]/vectorized_image.shape[0] 
-#     return normalized_histogram
-
-# # usually we should make sure that we are creating the correct
-# # probablilty distribution. we can do this by checking that the values of
-# # the histogram vector adds up to a total of '1'
-
 
 # --------------------------------------------
 #                 Equalize
@@ -50,24 +35,10 @@ def equalize( in_image_pixels ):
     return eq_img
 
 
-
+# --------------------------------------------
+#                 Plot Hist
+# --------------------------------------------
 def plot_histogram( hist ):
-    # plot_histgram  Plots the length 256 numpy vector representing the normalized
-    # histogram of a grayscale image.
-    #
-    # Syntax:
-    #   plot_histogram( hist )
-    #
-    # Input:
-    #   hist = The length 256 histogram vector..
-    #
-    # Output:
-    #   none
-    #
-    # History:
-    #   S. Newsam     10/23/2022   created
-
-
 
     # Import plotting functions from matplotlib.
     import matplotlib.pyplot as plt
