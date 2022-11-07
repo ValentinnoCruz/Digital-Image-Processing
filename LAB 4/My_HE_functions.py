@@ -12,20 +12,26 @@ import matplotlib.pyplot as plt
 # --------------------------------------------
 
 def compute_histogram(image_pixels): 
-    # using ravel we represent our img as a 1-dimensional vector
-    vectorized_image = image_pixels.ravel() 
-    histogram = np.zeros(shape=(256)) 
-    histogram = np.histogram(vectorized_image, 
-                            bins=256, 
-                            range=(0,255)) 
-    # to obtain te normalized histogram we take each value
-    # and then divide it by the total # of pixels
-    normalized_histogram = histogram[0]/vectorized_image.shape[0] 
-    return normalized_histogram
+    hist = np.zeros(shape=(256))              
+    for x in range(image_pixels.shape[0]):        
+        for y in range(image_pixels.shape[1]):            
+            hist[int(image_pixels[x][y])] += 1
+            
+#     return hist
+#     # using ravel we represent our img as a 1-dimensional vector
+#     vectorized_image = image_pixels.ravel() 
+#     histogram = np.zeros(shape=(256)) 
+#     histogram = np.histogram(vectorized_image, 
+#                             bins=256, 
+#                             range=(0,255)) 
+#     # to obtain te normalized histogram we take each value
+#     # and then divide it by the total # of pixels
+#     normalized_histogram = histogram[0]/vectorized_image.shape[0] 
+#     return normalized_histogram
 
-# usually we should make sure that we are creating the correct
-# probablilty distribution. we can do this by checking that the values of
-# the histogram vector adds up to a total of '1'
+# # usually we should make sure that we are creating the correct
+# # probablilty distribution. we can do this by checking that the values of
+# # the histogram vector adds up to a total of '1'
 
 
 # --------------------------------------------
