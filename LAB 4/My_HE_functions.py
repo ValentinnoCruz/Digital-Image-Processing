@@ -22,6 +22,9 @@ def compute_histogram(image_pixels):
 # --------------------------------------------
 #                 Equalize
 # --------------------------------------------
+#  Takes in as input a grayscale image 256 bits and returns 
+#  the histogram equalized version.
+
 def equalize( in_image_pixels ):
     # get image histogram
     histogram, bins = np.histogram(in_image_pixels.flatten(), 256, density=True)
@@ -38,6 +41,8 @@ def equalize( in_image_pixels ):
 # --------------------------------------------
 #                 Plot Hist
 # --------------------------------------------
+# plot_histgram  Plots the length 256 numpy vector representing the 
+# normalized histogram of a grayscale image.
 def plot_histogram( hist ):
 
     # Import plotting functions from matplotlib.
